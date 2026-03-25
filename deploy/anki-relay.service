@@ -1,0 +1,20 @@
+[Unit]
+Description=Anki Private Relay Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=anki-relay
+Group=anki-relay
+EnvironmentFile=-/etc/anki-relay/anki-relay.env
+WorkingDirectory=/opt/anki-relay
+ExecStart=/opt/anki-relay/anki-relay-server
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
